@@ -1,7 +1,7 @@
 import os
-import pandas as pd
 import requests
 import json
+import pandas as pd
 
 from flask import Flask, request, Response
 
@@ -34,7 +34,7 @@ def load_dataset(store_id):
 
     # Loading test dataset
     df10 = pd.read_csv( 'test.csv' )
-    df_store_raw = pd.read_csv('store.csv', low_memory=False)
+    df_store_raw = pd.read_csv('store.csv')
 
     # merge test dataset + store
     df_test = pd.merge( df10, df_store_raw, how='left', on='Store' )
@@ -126,5 +126,5 @@ def index():
         return '<h1> Rossmann Telegram BOT </h1>'
 
 if __name__ == '__main__':
-    port = os.environ.get('PORT', 5000)
-    app.run(host='0.0.0.0', port=port)
+    port = os.environ.get( 'PORT', 5000 )
+    app.run( host='0.0.0.0', port=port )
